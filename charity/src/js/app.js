@@ -40,7 +40,8 @@ $(window).load(function () {
                   var id = org[0];
                   var name = org[1];
                   var balance = org[2];
-                  var orgTable = "<tr><th>" + id + "</th><td>" + name + "</td><td>" + balance + "</td></tr>"
+                  var address=org[3];
+                  var orgTable = "<tr><th>" + id + "</th><td>" + name + "</td><td>" + balance + "</td><td>" + address + "</td></tr>"
                   $("#balances").append(orgTable);
 
                   var organizations="<option value='"+id+"'>"+name+"</option>"
@@ -62,7 +63,8 @@ $(window).load(function () {
       }
       App.contracts.Charity.deployed()
       .then(function(instance){
-          return instance.donate(uid,500,{from:App.account})
+          
+          return instance.donate(uid,1000000000000000000,{from:App.account,value:web3.toWei(1,'ether')})
       })
       .then(function(result){
           if(result.receipt){
@@ -74,6 +76,15 @@ $(window).load(function () {
           alert(error.message)
       })
     })
-
+    $('#btnBalance').on('click',function(){
+        App.contracts.Charity.deployed()
+            .then(function(instance){
+                return instance.getBalance();
+            })
+            .then(function(value){
+                console.log(value)
+                $("#accountBalance").html("잔액: "+web3.fromWei(value))
+            })
+    })
 
 });
