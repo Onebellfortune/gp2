@@ -25,7 +25,7 @@ $(window).load(function () {
     web3.eth.getCoinbase(function (err, account) {
         if (err === null) {
             App.account = account;
-            $("#accountAddress").html("나의 계정: " + account);
+            $("#accountAddress").html("나의 계정: "+ account);
         }
     });
 
@@ -39,10 +39,20 @@ $(window).load(function () {
               orgs.organizations(i).then(function (org) {
                   var id = org[0];
                   var name = org[1];
-                  var balance = org[2];
-                  var address=org[3];
-                  var orgTable = "<tr><th>" + id + "</th><td>" + name + "</td><td>" + balance + "</td><td>" + address + "</td></tr>"
-                  $("#balances").append(orgTable);
+                  var address=org[2];
+                  
+                  var res;
+                  web3.eth.getBalance(address,function(e,r){
+                        if(!e){
+                            var orgTable = "<tr><th>" + id + "</th><td>" + name + "</td><td>" + address + "</td><td>"+r+"</td></tr>"
+                            $("#balances").append(orgTable);
+                        }else{
+
+                        }
+                  })
+                  
+                  console.log(res);
+                  
 
                   var organizations="<option value='"+id+"'>"+name+"</option>"
                   $('#organizationSelect').append(organizations);

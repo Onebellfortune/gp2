@@ -9,7 +9,6 @@ contract Charity{
     struct Organization{
         uint uid;
         string name;
-        uint balance;
         address payable addr;
     }
 
@@ -23,15 +22,15 @@ contract Charity{
     mapping(uint=>Organization) public organizations;
 
     function addOrganization(string memory _name, address payable _addr) public{
-        organizations[organizationCount]=Organization(organizationCount,_name,0,_addr);
+        organizations[organizationCount]=Organization(organizationCount,_name,_addr);
         organizationCount++;
     }
 
     constructor() public {
         owner=msg.sender;
-        addOrganization('jongun',0x79a9fcEc3A9f72251d4Ce139660dbbc691f8Bde6);
-        addOrganization('miwon',0xd884590a3AB11A08D783BF90d98c43aC4d7ed87c);
-        addOrganization('seoyeong',0x36973fA3D93c48B6B9dcf859641a427e37A9952a);
+        addOrganization('jongun',0xf28D02B387BeE6e17ccA1E7E09CF70DF7E51116a);
+        addOrganization('miwon',0xbB85336a6c3Fc59FFdc85534174a26D789933fAC);
+        addOrganization('seoyeong',0x8fB8BEC81d3B5d207391667Be7b7676888999244);
     }
 
     event donateEvent(uint indexed uid);
@@ -41,13 +40,12 @@ contract Charity{
         return contractAddress.balance;
     }
 
-    function donate(uint _uid,uint amount) public payable ownerOnly {
-        organizations[_uid].balance+=amount;
+    function donate(uint _uid,uint amount) public payable  {
         send(organizations[_uid].addr,amount);
         emit donateEvent(_uid);
     }
 
-    function send(address payable to, uint amount) public payable ownerOnly{
+    function send(address payable to, uint amount) public payable {
         to.transfer(amount);
     }
 

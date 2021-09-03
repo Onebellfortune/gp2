@@ -9,6 +9,7 @@
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -17,42 +18,87 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
+
   <body>
-    <h1>당신을 위한 기부 플랫폼 - Wish.</h1>
-    <div id="loader">
-      <p>로딩중</p>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Bootstrap theme</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li class="divider"></li>
+                <li class="dropdown-header">Nav header</li>
+                <li><a href="#">Separated link</a></li>
+                <li><a href="#">One more separated link</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    
+    <div class="container theme-showcase" role="main">
+      <div class="jumbotron">
+        <h1>당신을 위한 기부 플랫폼 - Wish.</h1>
+        </div>
+        <div id="loader">
+          <p>로딩중</p>
+        </div>
+    
+        <div id="content" style="display:none,">
+          <table style="width:80%" class="table table-striped">
+            <colgroup>
+              <col width="200">
+              <col width="300">
+            <col width="500">
+            </colgroup>
+            <thead>
+              <tr>
+                <th scope="col">uid</th>
+                <th scope="col">name</th>
+                <th scope="col">address</th>
+                <th scope="col">balance</th>
+              </tr>
+            </thead>
+            <tbody id="balances">
+            </tbody>
+          </table>
+          
+          
+          
+          <h2>기부</h2>
+          
+          
+          <select id="organizationSelect">
+            <option value="">단체명</option>
+          </select>
+          <button id="btnDonate" class="btn btn-lg btn-primary">기부하기</button>
+          <p id="accountAddress"></p>
+          <p id="accountBalance"></p>
+          <button id="btnBalance">잔액조회</button>
+        </div>
     </div>
-
-    <div id="content" style="display:none,">
-      <table style="width:100%">
-        <colgroup>
-          <col width="60">
-          <col width="*">
-        <col width="100">
-        </colgroup>
-        <thead>
-          <tr>
-            <th scope="col">uid</th>
-            <th scope="col">name</th>
-            <th scope="col">balance</th>
-            <th scope="col">address</th>
-          </tr>
-        </thead>
-        <tbody id="balances">
-        </tbody>
-      </table>
-      <hr>
-      
-
-      <h2>기부</h2>
-      <select id="organizationSelect">
-        <option value="">단체명</option>
-      </select>
-      <button id="btnDonate">기부하기</button>
-      <p id="accountAddress"></p>
-      <p id="accountBalance"></p>
-      <button id="btnBalance">잔액조회</button>
-    </div>
+    
+    
+    
+    
+    
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
