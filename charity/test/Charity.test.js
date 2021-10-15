@@ -6,6 +6,7 @@ contract('Charity',accounts=>{
         return Charity.deployed()
         .then(instance=>{
 
+            console.log(msg.sender);
             return instance.organizationCount()
         })
         .then(count=>{

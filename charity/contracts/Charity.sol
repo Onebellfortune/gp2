@@ -16,7 +16,7 @@ contract Charity{
         if(owner==msg.sender)
         {_;}
     }
-
+    
     uint public organizationCount;
 
     mapping(uint=>Organization) public organizations;
@@ -33,7 +33,10 @@ contract Charity{
         addOrganization('seoyeong',0x8fB8BEC81d3B5d207391667Be7b7676888999244);
     }
 
-    event donateEvent(uint indexed uid);
+    function getName(uint _uid) public returns(string memory){
+        return organizations[_uid].name;
+    }
+    event donateEvent(address from, address to, uint indexed uid);
 
     function getBalance() public view returns (uint){
         address contractAddress=owner;
@@ -41,8 +44,9 @@ contract Charity{
     }
 
     function donate(uint _uid,uint amount) public payable  {
+    
         send(organizations[_uid].addr,amount);
-        emit donateEvent(_uid);
+        emit donateEvent(owner,organizations[_uid].addr,_uid);
     }
 
     function send(address payable to, uint amount) public payable {
